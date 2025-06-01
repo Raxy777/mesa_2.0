@@ -4,7 +4,6 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Initial } from "@/components/animation/initial"
 import { LoadingProvider } from "@/components/providers/loading-provider"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -30,7 +29,6 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LoadingProvider>
             <div className="flex min-h-screen flex-col">
-              <Initial />
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />

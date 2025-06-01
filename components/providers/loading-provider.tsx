@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { PageLoading } from '@/components/animation/page-loading';
+import { Initial } from '@/components/animation/initial';
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -20,7 +21,7 @@ function LoadingContent({ children }: { children: React.ReactNode }) {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // 2.5 seconds loading duration
+    }, 3200); // 3.2 seconds loading duration
 
     return () => clearTimeout(timer);
   }, [pathname, searchParams]);
@@ -43,7 +44,7 @@ function LoadingContent({ children }: { children: React.ReactNode }) {
       {children}
       {isLoading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-          <PageLoading />
+          {pathname === '/' ? <Initial /> : <PageLoading />}
         </div>
       )}
     </LoadingContext.Provider>
