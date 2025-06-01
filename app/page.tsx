@@ -33,17 +33,17 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="space-y-4">
+            <div className="space-y-4 text-center lg:text-left">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Welcome to MESA</h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl">
+              <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
                 We bring together passionate individuals to create, learn, and grow together. Join us on our mission to
                 make a difference.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="cursor-pointer group relative bg-gradient-to-r from-blue-600 to-violet-600 hover:bg-zinc-300 text-white font-semibold text-sm px-6 py-3 rounded-full transition-all duration-200 ease-in-out shadow w-40 hover:shadow-lg" asChild>
+              <div className="flex flex-col sm:flex-row gap-2 justify-center lg:justify-start">
+                <Button className="cursor-pointer group relative bg-gradient-to-r from-blue-600 to-violet-600 hover:bg-zinc-300 text-white font-semibold text-sm px-6 py-3 rounded-full transition-all duration-200 ease-in-out shadow w-auto hover:shadow-lg" asChild>
                   <Link href="/events">Upcoming Events</Link>
                 </Button>
-                <Button className="relative py-2 px-3 text-black text-sm font-semibold nded-full overflow-hidden w-40 bg-white rounded-full transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-violet-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0" variant="outline" asChild>
+                <Button className="relative py-2 px-3 text-black text-sm font-semibold nded-full overflow-hidden w-auto bg-white rounded-full transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-violet-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0" variant="outline" asChild>
                   <Link href="/team">Meet Our Team</Link>
                 </Button>
               </div>
