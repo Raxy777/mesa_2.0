@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, User } from "lucide-react"
+import NewsletterSignup from "@/components/newsletter-signup"
 
 export default function AnnouncementsPage() {
   return (
@@ -154,11 +155,7 @@ export default function AnnouncementsPage() {
               </p>
             </div>
             <div className="w-full max-w-md">
-              <form className="flex flex-col sm:flex-row gap-2">
-                <Input type="email" placeholder="Enter your email" className="flex-1" />
-                <Button type="submit">Subscribe</Button>
-              </form>
-              <p className="mt-2 text-xs text-muted-foreground">We respect your privacy. Unsubscribe at any time.</p>
+             <NewsletterSignup/>
             </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, Calendar, Users, Newspaper } from "lucide-react"
+import Carousel from "@/components/carousel"
+import NewsletterSignup from "@/components/newsletter-signup"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import NewsletterSignup from "@/components/newsletter-signup"
-import Carousel from "@/components/carousel"
+import { ArrowRight, Calendar, Newspaper, Users } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function HomePage() {
   // Carousel images
@@ -40,10 +40,10 @@ export default function HomePage() {
                 make a difference.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild>
+                <Button className="cursor-pointer group relative bg-gradient-to-r from-blue-600 to-violet-600 hover:bg-zinc-300 text-white font-semibold text-sm px-6 py-3 rounded-full transition-all duration-200 ease-in-out shadow w-40 hover:shadow-lg" asChild>
                   <Link href="/events">Upcoming Events</Link>
                 </Button>
-                <Button variant="outline" asChild>
+                <Button className="relative py-2 px-3 text-black text-sm font-semibold nded-full overflow-hidden w-40 bg-white rounded-full transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-violet-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0" variant="outline" asChild>
                   <Link href="/team">Meet Our Team</Link>
                 </Button>
               </div>
@@ -207,7 +207,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="flex justify-center">
-            <Button asChild>
+            <Button className="rounded-full bg-gradient-to-r from-blue-600 to-violet-600" asChild>
               <Link href="/events" className="inline-flex items-center">
                 View All Events <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

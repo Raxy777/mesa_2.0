@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from "lucide-react"
 import Logo from "@/components/logo"
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react"
+import Link from "next/link"
 
 export default function Footer() {
   return (
