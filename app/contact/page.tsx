@@ -225,7 +225,7 @@ export default function ContactPage() {
                             required
                           />
                         </div>
-                        <Button type="submit" className="w-full" disabled={isSubmitting}>
+                        <Button type="submit" className="relative w-full bottom-0 flex justify-center items-center gap-2 border border-[#4361ee] rounded-xl text-[#FFF] bg-[#4361ee] px-8 py-4 z-10 overflow-hidden ease-in-out duration-700 group hover:text-[#000] hover:bg-gradient-to-r from-emerald-400 to-cyan-400 active:scale-95 active:duration-0 focus:bg-gradient-to-r from-emerald-400 to-cyan-400 focus:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-gradient-to-r from-emerald-400 to-cyan-400 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700" disabled={isSubmitting}>
                           {isSubmitting ? (
                             <>Sending...</>
                           ) : (
@@ -275,10 +275,10 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild>
+              <Button className="cursor-pointer group relative bg-gradient-to-r from-blue-600 to-violet-600 hover:bg-zinc-300 text-white font-semibold text-sm px-6 py-3 rounded-full transition-all duration-200 ease-in-out shadow w-40 hover:shadow-lg" asChild>
                 <Link href="#">Become a Member</Link>
               </Button>
-              <Button variant="outline" asChild>
+              <Button className="relative py-2 px-3 text-black text-sm font-semibold nded-full overflow-hidden w-40 bg-white rounded-full transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-600 before:to-violet-600 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0" variant="outline" asChild>
                 <Link href="/events">Explore Events</Link>
               </Button>
             </div>

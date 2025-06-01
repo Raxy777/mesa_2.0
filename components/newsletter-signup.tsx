@@ -38,7 +38,7 @@ export default function NewsletterSignup() {
           required
           className="flex-1"
         />
-        <Button type="submit" disabled={isLoading}>
+        <Button className="bg-gradient-to-r from-blue-600 to-violet-600" type="submit" disabled={isLoading}>
           {isLoading ? "Subscribing..." : "Subscribe"}
         </Button>
       </div>
