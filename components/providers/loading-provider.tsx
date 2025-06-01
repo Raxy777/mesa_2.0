@@ -25,6 +25,19 @@ function LoadingContent({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
+  // Add effect to handle body scroll
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isLoading]);
+
   return (
     <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
       {children}
