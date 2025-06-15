@@ -1,15 +1,19 @@
-import Link from "next/link"
-import Image from "next/image"
+import FloatingIcons from "@/components/animation/floating-icons"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { MapPin, Clock, Users } from "lucide-react"
+import { Clock, MapPin, Users } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+      <section className="relative w-full py-12 md:py-24 lg:py-32 bg-muted">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <FloatingIcons />
+        </div>
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
