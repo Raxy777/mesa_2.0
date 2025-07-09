@@ -37,47 +37,46 @@ export default function TeamPage() {
               </TabsList>
             </div>
 
-            {/* Faculty Advisers Tab - 2 per row */}
+            {/* Faculty Advisers Tab */}
             <TabsContent value="faculty" className="space-y-8">
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="flex flex-wrap gap-8 justify-center">
                 {facultyAdvisers.map((member, index) => (
-                  <TeamMemberCard key={index} member={member} />
+                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+                    <TeamMemberCard member={member} />
+                  </div>
                 ))}
-              </div>
-              <div className="bg-muted p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-2">About Our Faculty Advisers</h3>
-                <p className="text-muted-foreground">
-                  Our faculty advisers provide guidance, mentorship, and institutional support to help our club thrive.
-                  They bring years of experience and expertise to ensure our activities align with educational goals and
-                  professional standards. Faculty advisers serve as a bridge between the club and the institution,
-                  helping us navigate resources, policies, and opportunities.
-                </p>
               </div>
             </TabsContent>
 
-            {/* Leadership Team Tab - 4 per row */}
+            {/* Leadership Team Tab */}
             <TabsContent value="leadership" className="space-y-8">
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div className="flex flex-wrap gap-8 justify-center">
                 {leadershipTeam.map((member, index) => (
-                  <TeamMemberCard key={index} member={member} compact />
+                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+                    <TeamMemberCard member={member} />
+                  </div>
                 ))}
               </div>
             </TabsContent>
 
-            {/* Committee Leads Tab - 4 per row */}
+            {/* Committee Leads Tab */}
             <TabsContent value="committee" className="space-y-8">
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div className="flex flex-wrap gap-8 justify-center">
                 {committeeLeads.map((member, index) => (
-                  <TeamMemberCard key={index} member={member} compact />
+                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+                    <TeamMemberCard member={member} />
+                  </div>
                 ))}
               </div>
             </TabsContent>
 
-            {/* Volunteers Tab - 4 per row */}
+            {/* Volunteers Tab */}
             <TabsContent value="volunteers" className="space-y-8">
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div className="flex flex-wrap gap-8 justify-center">
                 {volunteers.map((member, index) => (
-                  <TeamMemberCard key={index} member={member} compact />
+                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+                    <TeamMemberCard member={member} />
+                  </div>
                 ))}
               </div>
             </TabsContent>
@@ -146,43 +145,39 @@ export default function TeamPage() {
   )
 }
 
-function TeamMemberCard({ member, compact = false }: { member: any; compact?: boolean }) {
-  // Adjust image size based on compact mode
-  const imageSize = compact ? "aspect-[4/3]" : "aspect-square"
-
+function TeamMemberCard({ member }: { member: any }) {
   return (
-    <Card className="overflow-hidden h-full flex flex-col">
-      <div className={`relative ${imageSize} overflow-hidden`}>
-        <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+    <Card className="overflow-hidden h-full flex flex-col transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+      <div className="p-4">
+        <div className="relative aspect-square overflow-hidden rounded-md">
+          <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+        </div>
       </div>
-      <CardHeader className={compact ? "p-3" : "p-4"}>
-        <CardTitle className={compact ? "text-lg" : "text-xl"}>{member.name}</CardTitle>
-        <CardDescription className={compact ? "text-xs" : "text-sm"}>{member.role}</CardDescription>
+      <CardHeader className="text-center pt-0">
+        <CardTitle>{member.name}</CardTitle>
+        <CardDescription>{member.role}</CardDescription>
       </CardHeader>
-      <CardContent className={`${compact ? "p-3 pt-0 text-xs" : "p-4 pt-0 text-sm"} flex-grow`}>
-        <p className="text-muted-foreground line-clamp-3">{member.bio}</p>
-      </CardContent>
-      <CardFooter className={`flex justify-start gap-1 ${compact ? "p-3 pt-0" : "p-4 pt-0"}`}>
+      <CardFooter className="flex justify-center gap-2 pb-4 mt-auto">
         {member.email && (
-          <Button variant="ghost" size="icon" asChild className={compact ? "h-8 w-8" : ""}>
+          <Button variant="ghost" size="icon" asChild>
             <Link href={`mailto:${member.email}`}>
-              <Mail className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
+              <Mail className="h-4 w-4" />
               <span className="sr-only">Email</span>
             </Link>
           </Button>
         )}
         {member.linkedin && (
-          <Button variant="ghost" size="icon" asChild className={compact ? "h-8 w-8" : ""}>
+          <Button variant="ghost" size="icon" asChild>
             <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-              <Linkedin className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
+              <Linkedin className="h-4 w-4" />
               <span className="sr-only">LinkedIn</span>
             </Link>
           </Button>
         )}
         {member.twitter && (
-          <Button variant="ghost" size="icon" asChild className={compact ? "h-8 w-8" : ""}>
+          <Button variant="ghost" size="icon" asChild>
             <Link href={member.twitter} target="_blank" rel="noopener noreferrer">
-              <Twitter className={compact ? "h-3.5 w-3.5" : "h-4 w-4"} />
+              <Twitter className="h-4 w-4" />
               <span className="sr-only">Twitter</span>
             </Link>
           </Button>
