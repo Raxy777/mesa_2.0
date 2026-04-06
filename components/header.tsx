@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import Logo from "@/components/logo"
+import { ModeToggle } from "@/components/mode-toggle"
+import Sidebar from "@/components/sidebar"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ModeToggle } from "@/components/mode-toggle"
-import Logo from "@/components/logo"
-import Sidebar from "@/components/sidebar"
+import { useEffect, useState } from "react"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -36,7 +36,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
           <div className="flex lg:flex-1">{mounted && <Logo size="medium" />}</div>
 
-          <div className="hidden lg:flex lg:gap-x-8">
+          <div className="hidden lg:flex lg:gap-x-8 lg:items-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -48,12 +48,11 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <div className="flex lg:flex-1 lg:justify-end">
-            <ModeToggle />
-          </div>
           </div>
 
-          
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <ModeToggle />
+          </div>
         </div>
       </header>
     </>

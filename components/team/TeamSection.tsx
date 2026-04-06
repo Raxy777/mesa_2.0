@@ -36,13 +36,13 @@ export function TeamSection({ title, subtitle, members, variant }: TeamSectionPr
   const getTitleGradient = () => {
     switch (variant) {
       case "founders":
-        return "from-amber-600 to-yellow-700" // Darker yellows/oranges
+        return "from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400"
       case "developer":
-        return "from-teal-600 to-cyan-700"    // Darker teals/cyans
+        return "from-green-600 to-teal-600 dark:from-green-400 dark:to-teal-400"
       case "mentors":
-        return "from-purple-600 to-indigo-700" // Darker purples/indigos
+        return "from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400"
       default:
-        return "from-gray-700 to-gray-900"      // Default dark gray
+        return "from-orange-500 via-amber-500 to-yellow-500"
     }
   }
 
@@ -50,11 +50,11 @@ export function TeamSection({ title, subtitle, members, variant }: TeamSectionPr
     <section className="py-12 md:py-16">
       <div className="text-center mb-12 md:mb-16">
         <h2
-          className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-black bg-gradient-to-r ${getTitleGradient()}`}
+          className={`text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r ${getTitleGradient()}`}
         >
           {title}
         </h2>
-        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       </div>

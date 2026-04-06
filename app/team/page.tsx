@@ -1,82 +1,70 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Mail, Linkedin, Twitter } from "lucide-react"
+import { ProfileCard } from "@/components/team/ProfileCard"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import HeroBackground from "@/components/ui/hero-background"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Briefcase, Users } from "lucide-react"
+import Link from "next/link"
 
 export default function TeamPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Meet Our Team</h1>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Get to know the dedicated individuals who make our club possible. Our team is committed to creating
-                valuable experiences and fostering a supportive community.
-              </p>
+      <section className="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden py-12 lg:py-24">
+        <HeroBackground />
+        {/* Ambient Gradient Blobs */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-primary/20 to-orange-500/20 rounded-full blur-[100px] z-0 pointer-events-none animate-pulse" />
+
+        <div className="container px-4 md:px-6 relative z-10 text-center">
+             <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium backdrop-blur-sm mb-6 badge-glow">
+              <Users className="mr-2 h-4 w-4" />
+              Our Community
             </div>
-          </div>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6">
+              Meet Our <span className="text-gradient">Team</span>
+            </h1>
+            <p className="max-w-[800px] text-muted-foreground text-lg md:text-xl mx-auto leading-relaxed">
+              The dedicated individuals working behind the scenes to make our club great.
+            </p>
         </div>
       </section>
 
-      {/* Team Members Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      {/* Team Listings Section */}
+      <section className="w-full py-12 md:py-24 relative overflow-hidden">
+        {/* Ambient Background */}
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-bl from-primary/5 to-transparent -z-10"></div>
+
         <div className="container px-4 md:px-6">
-          <Tabs defaultValue="faculty" className="w-full">
-            <div className="flex justify-between items-center mb-8 flex-col sm:flex-row gap-4">
-              <h2 className="text-2xl font-bold tracking-tighter md:text-3xl">Our Team</h2>
-              <TabsList>
-                <TabsTrigger value="faculty">Faculty Advisers</TabsTrigger>
-                <TabsTrigger value="leadership">Leadership</TabsTrigger>
-                <TabsTrigger value="committee">Committee Leads</TabsTrigger>
-                <TabsTrigger value="volunteers">Volunteers</TabsTrigger>
+          <Tabs defaultValue="leadership" className="w-full">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+              <h2 className="text-3xl font-bold tracking-tighter">Team Members</h2>
+              <TabsList className="bg-background/50 border border-white/10 p-1">
+                <TabsTrigger value="leadership">Core Leadership</TabsTrigger>
+                <TabsTrigger value="committees">Committee Leads</TabsTrigger>
+                <TabsTrigger value="advisors">Advisors</TabsTrigger>
               </TabsList>
             </div>
 
-            {/* Faculty Advisers Tab */}
-            <TabsContent value="faculty" className="space-y-8">
-              <div className="flex flex-wrap gap-8 justify-center">
-                {facultyAdvisers.map((member, index) => (
-                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-                    <TeamMemberCard member={member} />
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* Leadership Team Tab */}
-            <TabsContent value="leadership" className="space-y-8">
-              <div className="flex flex-wrap gap-8 justify-center">
+            <TabsContent value="leadership" className="space-y-8 animate-in fade-in-50 duration-500">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {leadershipTeam.map((member, index) => (
-                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-                    <TeamMemberCard member={member} />
-                  </div>
+                  <ProfileCard key={index} name={member.name} designation={member.role} image={member.image} socials={member.social} />
                 ))}
               </div>
             </TabsContent>
 
-            {/* Committee Leads Tab */}
-            <TabsContent value="committee" className="space-y-8">
-              <div className="flex flex-wrap gap-8 justify-center">
+            <TabsContent value="committees" className="space-y-8 animate-in fade-in-50 duration-500">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {committeeLeads.map((member, index) => (
-                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-                    <TeamMemberCard member={member} />
-                  </div>
+                  <ProfileCard key={index} name={member.name} designation={member.role} image={member.image} socials={member.social} />
                 ))}
               </div>
             </TabsContent>
 
-            {/* Volunteers Tab */}
-            <TabsContent value="volunteers" className="space-y-8">
-              <div className="flex flex-wrap gap-8 justify-center">
-                {volunteers.map((member, index) => (
-                  <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-                    <TeamMemberCard member={member} />
-                  </div>
+            <TabsContent value="advisors" className="space-y-8 animate-in fade-in-50 duration-500">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {advisors.map((member, index) => (
+                  <ProfileCard key={index} name={member.name} designation={member.role} image={member.image} socials={member.social} />
                 ))}
               </div>
             </TabsContent>
@@ -84,58 +72,26 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Team Structure Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row gap-8 items-center">
-            <div className="lg:w-1/2 space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Our Structure</h2>
-              <p className="text-muted-foreground">
-                Our club is organized into several committees, each focused on specific aspects of our mission. This
-                structure allows us to efficiently plan and execute events, manage resources, and provide the best
-                possible experience for our members.
-              </p>
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold">Committees:</h3>
-                <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                  <li>Events & Programming</li>
-                  <li>Membership & Outreach</li>
-                  <li>Communications & Marketing</li>
-                  <li>Finance & Sponsorship</li>
-                  <li>Professional Development</li>
-                </ul>
-              </div>
-            </div>
-            <div className="lg:w-1/2 relative aspect-video overflow-hidden rounded-xl">
-              <Image
-                src="/placeholder.svg?height=720&width=1280"
-                alt="Team structure diagram"
-                width={1280}
-                height={720}
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Join the Team Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Join Our Team</h2>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Interested in becoming part of our team? We're always looking for passionate individuals to help us grow
-                and improve.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild>
-                <Link href="/contact">Apply Now</Link>
-              </Button>
-              <Button variant="outline" asChild>
+      <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5 -z-10"></div>
+        <div className="container px-4 md:px-6 text-center">
+          <div className="max-w-3xl mx-auto space-y-8">
+            <div className="inline-flex items-center rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-sm font-medium text-orange-600 dark:text-orange-400 backdrop-blur-sm">
+                  <Briefcase className="mr-2 h-4 w-4" />
+                  We are hiring
+             </div>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Join the Leadership Team</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Are you passionate about our mission? We are always looking for dedicated individuals to join our
+              committees and help lead the club. Check out our open positions or start a conversation with us.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button size="lg" className="rounded-full px-8 bg-gradient-to-r from-primary to-orange-600 hover:shadow-lg hover:from-primary/90 hover:to-orange-700 transition-all duration-300" asChild>
                 <Link href="/contact">Contact Us</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-full px-8 border-primary/20 hover:bg-primary/5 transition-all duration-300" asChild>
+                <Link href="/dev-refs">View Opportunities</Link>
               </Button>
             </div>
           </div>
@@ -145,210 +101,131 @@ export default function TeamPage() {
   )
 }
 
-function TeamMemberCard({ member }: { member: any }) {
-  return (
-    <Card className="overflow-hidden h-full flex flex-col transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-      <div className="p-4">
-        <div className="relative aspect-square overflow-hidden rounded-md">
-          <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
-        </div>
-      </div>
-      <CardHeader className="text-center pt-0">
-        <CardTitle>{member.name}</CardTitle>
-        <CardDescription>{member.role}</CardDescription>
-      </CardHeader>
-      <CardFooter className="flex justify-center gap-2 pb-4 mt-auto">
-        {member.email && (
-          <Button variant="ghost" size="icon" asChild>
-            <Link href={`mailto:${member.email}`}>
-              <Mail className="h-4 w-4" />
-              <span className="sr-only">Email</span>
-            </Link>
-          </Button>
-        )}
-        {member.linkedin && (
-          <Button variant="ghost" size="icon" asChild>
-            <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-              <Linkedin className="h-4 w-4" />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-          </Button>
-        )}
-        {member.twitter && (
-          <Button variant="ghost" size="icon" asChild>
-            <Link href={member.twitter} target="_blank" rel="noopener noreferrer">
-              <Twitter className="h-4 w-4" />
-              <span className="sr-only">Twitter</span>
-            </Link>
-          </Button>
-        )}
-      </CardFooter>
-    </Card>
-  )
-}
 
-// Faculty Advisers Data
-const facultyAdvisers = [
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for faculty adviser.",
-    email: "demo@university.edu",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
-  },
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for faculty adviser.",
-    email: "demo@university.edu",
-    linkedin: "https://linkedin.com",
-    twitter: null,
-  },
-]
 
 const leadershipTeam = [
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for leadership team member.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    name: "Alex Morgan",
+    role: "President",
+    initials: "AM",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Alex is a senior majoring in Computer Science with a passion for web development and community building.",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      github: "#",
+      email: "alex@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for leadership team member.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
+    name: "Sarah Chen",
+    role: "Vice President",
+    initials: "SC",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Sarah is a junior specializing in AI/ML. She oversees club operations and coordinates major events.",
+    social: {
+      linkedin: "#",
+      github: "#",
+      email: "sarah@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for leadership team member.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    name: "David Kim",
+    role: "Treasurer",
+    initials: "DK",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "David manages the club's finances and budget. He is studying Finance and Data Science.",
+    social: {
+      linkedin: "#",
+      email: "david@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for leadership team member.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
+    name: "Emily Rodriguez",
+    role: "Secretary",
+    initials: "ER",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Emily handles internal communications and record-keeping. She loves organized code and organized clubs.",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      email: "emily@example.com",
+    },
   },
 ]
 
 const committeeLeads = [
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for committee lead.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    name: "Michael Chang",
+    role: "Events Lead",
+    initials: "MC",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Michael loves planning engaging workshops and social events that bring people together.",
+    social: {
+      linkedin: "#",
+      email: "michael@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for committee lead.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
+    name: "Jessica Patel",
+    role: "Outreach Lead",
+    initials: "JP",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Jessica focuses on connecting the club with industry partners and other student organizations.",
+    social: {
+      twitter: "#",
+      linkedin: "#",
+      email: "jessica@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for committee lead.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    name: "Ryan O'Connor",
+    role: "Tech Lead",
+    initials: "RO",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Ryan maintains the club's website and infrastructure. He enjoys teaching others about DevOps.",
+    social: {
+      github: "#",
+      linkedin: "#",
+      email: "ryan@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for committee lead.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
-  },
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for committee lead.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    name: "Olivia Johnson",
+    role: "Design Lead",
+    initials: "OJ",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Olivia ensures all club assets look great. She is majoring in Graphic Design and CS.",
+    social: {
+      instagram: "#",
+      linkedin: "#",
+      email: "olivia@example.com",
+    },
   },
 ]
 
-const volunteers = [
+const advisors = [
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for volunteer.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
+    name: "Dr. Robert Smith",
+    role: "Faculty Advisor",
+    initials: "RS",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Dr. Smith is a Professor of Computer Science who provides guidance and support to the club.",
+    social: {
+      linkedin: "#",
+      email: "robert@example.com",
+    },
   },
   {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for volunteer.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
-  },
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for volunteer.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
-  },
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for volunteer.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
-  },
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for volunteer.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: null,
-  },
-  {
-    name: "Demo Name",
-    role: "Demo Post",
-    image: "/placeholder.svg",
-    bio: "Demo bio for volunteer.",
-    email: "demo@clubname.org",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    name: "Linda Wong",
+    role: "Industry Mentor",
+    initials: "LW",
+    image: "/placeholder.svg?height=400&width=400",
+    bio: "Linda is a Senior Software Engineer at Tech Corp. She mentors students on career development.",
+    social: {
+      linkedin: "#",
+      twitter: "#",
+      email: "linda@example.com",
+    },
   },
 ]
