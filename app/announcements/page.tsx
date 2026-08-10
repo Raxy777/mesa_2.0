@@ -1,10 +1,8 @@
-
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import HeroBackground from "@/components/ui/hero-background"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Bell, Calendar, Search, User } from "lucide-react"
+import { FadeIn } from "@/components/animation/fade-in"
+import { ArrowRight, Calendar, Search, User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -12,154 +10,175 @@ export default function AnnouncementsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden py-12 lg:py-24">
+      <section className="relative w-full min-h-[52vh] flex items-center justify-center overflow-hidden py-20">
         <HeroBackground />
-        {/* Ambient Gradient Blobs */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-primary/20 to-orange-500/20 rounded-full blur-[100px] z-0 pointer-events-none animate-pulse" />
-
-        <div className="container px-4 md:px-6 relative z-10 text-center">
-            <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium backdrop-blur-sm mb-6 badge-glow">
-              <Bell className="mr-2 h-4 w-4" />
-              Latest Updates
-            </div>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6">
-              Announcements <span className="text-gradient">& News</span>
+        <div className="container px-4 md:px-6 relative z-10 text-center space-y-6">
+          <FadeIn delay={0}>
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
+              The Newsroom
+            </span>
+          </FadeIn>
+          <FadeIn delay={1}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              Announcements <span className="text-gradient">&amp; news</span>
             </h1>
-            <p className="max-w-[800px] text-muted-foreground text-lg md:text-xl mx-auto leading-relaxed">
-              Stay updated with the latest news, announcements, and updates from our club.
-              We're constantly moving forward.
+          </FadeIn>
+          <FadeIn delay={2}>
+            <p className="max-w-[680px] mx-auto text-muted-foreground text-lg md:text-xl leading-relaxed">
+              Bulletins from the shop floor — events, results, and everything in between.
             </p>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Search and Filter Section */}
-      <section className="w-full py-6 md:py-12 relative z-10 -mt-10">
+      {/* Search and Filter Toolbar */}
+      <section className="w-full relative z-10 -mt-10">
         <div className="container px-4 md:px-6">
-          <div className="glass-card rounded-2xl p-6 shadow-xl">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              <div className="w-full md:w-1/3 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input type="search" placeholder="Search announcements..." className="w-full pl-10 bg-background/50 border-white/10" />
+          <FadeIn delay={1}>
+            <div className="glass-card rounded-2xl border border-border p-4 md:p-5 shadow-xl">
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div className="w-full md:w-1/3 relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    placeholder="Search announcements..."
+                    className="w-full pl-10 rounded-xl bg-background/60 border-border focus-visible:ring-primary/40"
+                  />
+                </div>
+                <Tabs defaultValue="all" className="w-full md:w-auto">
+                  <TabsList className="bg-background/60 p-1 border border-border rounded-xl w-full md:w-auto">
+                    <TabsTrigger value="all" className="rounded-lg font-mono text-xs uppercase tracking-wider flex-1 md:flex-none">All</TabsTrigger>
+                    <TabsTrigger value="news" className="rounded-lg font-mono text-xs uppercase tracking-wider flex-1 md:flex-none">News</TabsTrigger>
+                    <TabsTrigger value="events" className="rounded-lg font-mono text-xs uppercase tracking-wider flex-1 md:flex-none">Events</TabsTrigger>
+                    <TabsTrigger value="updates" className="rounded-lg font-mono text-xs uppercase tracking-wider flex-1 md:flex-none">Updates</TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
-              <Tabs defaultValue="all" className="w-full md:w-auto">
-                <TabsList className="bg-background/50 p-1 border border-white/10">
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="news">News</TabsTrigger>
-                  <TabsTrigger value="events">Events</TabsTrigger>
-                  <TabsTrigger value="updates">Updates</TabsTrigger>
-                </TabsList>
-              </Tabs>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Announcements List */}
-      <section className="w-full py-12 md:py-24 relative overflow-hidden">
-        {/* Ambient Background */}
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl -z-10" />
-
+      <section className="w-full py-12 md:py-20 relative overflow-hidden">
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {announcements.map((announcement, index) => (
-              <div key={index} className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-orange-600/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-                <Card className="flex flex-col h-full border-border/50 bg-background/60 backdrop-blur-xl hover:bg-background/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden">
+              <FadeIn key={announcement.id} delay={index % 3} className="h-full">
+                <article className="group relative flex flex-col h-full rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:border-primary/40 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10">
+                  {/* Ghost index number */}
+                  <span className="pointer-events-none select-none absolute -top-3 right-3 z-20 font-display text-7xl font-bold text-foreground/5 leading-none">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
                   <div className="relative h-48 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                    <span className="absolute top-4 right-4 z-20 inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-2.5 py-0.5 text-xs font-semibold backdrop-blur-md">
-                        {announcement.category}
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent z-10" />
+                    <span className="absolute top-4 left-4 z-20 inline-flex items-center rounded-full bg-background/80 backdrop-blur-md border border-border px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      <Calendar className="mr-1.5 h-3 w-3 text-primary" />
+                      {announcement.date}
+                    </span>
+                    <span className="absolute top-4 right-4 z-20 inline-flex items-center rounded-full bg-primary text-primary-foreground px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider">
+                      {announcement.category}
                     </span>
                     <Image
                       src={announcement.image || "/placeholder.svg"}
                       alt={announcement.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  
-                  <CardHeader>
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-2">
-                       <span className="inline-flex items-center">
-                        <Calendar className="mr-1 h-3 w-3" />
-                        {announcement.date}
-                      </span>
-                      <span className="inline-flex items-center">
-                        <User className="mr-1 h-3 w-3" />
-                        {announcement.author}
-                      </span>
+
+                  <div className="flex flex-col flex-grow p-6">
+                    <div className="flex items-center gap-2 mb-3 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                      <User className="h-3 w-3 text-primary" />
+                      {announcement.author}
                     </div>
-                    <CardTitle className="text-xl font-bold line-clamp-2 group-hover:text-primary transition-colors">
-                        {announcement.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground line-clamp-3">{announcement.excerpt}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant="ghost" asChild className="w-full justify-between group-hover:text-primary px-0 hover:bg-transparent">
-                      <Link href={`/announcements/${announcement.id}`}>
-                        Read More <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    <h3 className="font-display text-xl font-bold tracking-tight line-clamp-2 group-hover:text-primary transition-colors">
+                      {announcement.title}
+                    </h3>
+                    <p className="mt-3 text-muted-foreground leading-relaxed line-clamp-3 flex-grow">
+                      {announcement.excerpt}
+                    </p>
+                    <div className="mt-6 pt-4 border-t border-border">
+                      <Link
+                        href={`/announcements/${announcement.id}`}
+                        className="inline-flex items-center font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground group-hover:text-primary transition-colors"
+                      >
+                        Read bulletin
+                        <ArrowRight className="h-3.5 w-3.5 ml-2 transition-transform group-hover:translate-x-1" />
                       </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </div>
+                    </div>
+                  </div>
+                </article>
+              </FadeIn>
             ))}
           </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-center space-x-2 py-16">
-            <Button variant="outline" size="icon" disabled className="rounded-full">
-              <span className="sr-only">Previous page</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
+          <FadeIn delay={0}>
+            <div className="flex items-center justify-center gap-2 py-16">
+              <button
+                disabled
+                className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-card border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:opacity-40 disabled:pointer-events-none"
               >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </Button>
-            <Button variant="outline" size="sm" className="font-medium rounded-full bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground">
-              1
-            </Button>
-            <Button variant="outline" size="sm" className="font-medium rounded-full">
-              2
-            </Button>
-            <Button variant="outline" size="sm" className="font-medium rounded-full">
-              3
-            </Button>
-            <span className="text-muted-foreground">...</span>
-            <Button variant="outline" size="icon" className="rounded-full">
-              <span className="sr-only">Next page</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </Button>
-          </div>
+                <span className="sr-only">Previous page</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <button className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-primary text-primary-foreground font-mono text-xs font-semibold transition-colors">
+                1
+              </button>
+              <button className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-card border border-border text-muted-foreground font-mono text-xs font-semibold transition-colors hover:border-primary/40 hover:text-primary">
+                2
+              </button>
+              <button className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-card border border-border text-muted-foreground font-mono text-xs font-semibold transition-colors hover:border-primary/40 hover:text-primary">
+                3
+              </button>
+              <span className="font-mono text-xs text-muted-foreground px-1">…</span>
+              <button className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-card border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary">
+                <span className="sr-only">Next page</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-
+      {/* Closing Strip */}
+      <section className="w-full border-t border-border">
+        <div className="container px-4 md:px-6 py-8 flex items-center justify-center gap-4">
+          <span className="h-px w-12 bg-border" />
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground text-center">
+            End of transmission // Stay tuned
+          </p>
+          <span className="h-px w-12 bg-border" />
+        </div>
+      </section>
     </div>
   )
 }
@@ -167,93 +186,92 @@ export default function AnnouncementsPage() {
 const announcements = [
   {
     id: "1",
-    title: "Annual Conference Registration Now Open",
+    title: "MESA Annual Technical Symposium — Registration Open",
     date: "May 15, 2025",
-    author: "Sarah Johnson",
+    author: "Prof. S. Banerjee",
     category: "Events",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic1.jpeg",
     excerpt:
-      "Registration for our annual conference is now open. Early bird pricing available until June 1st. Don't miss this opportunity to connect with industry leaders and fellow members.",
+      "Registrations are now open for our flagship technical symposium featuring keynote talks, paper presentations, and a design challenge. Early-bird slots close June 1st — secure your place among NIT Durgapur's finest mechanical minds.",
   },
   {
     id: "2",
-    title: "New Partnership Announcement",
+    title: "MESA Signs MoU with Leading Automotive OEM",
     date: "May 10, 2025",
-    author: "Michael Chen",
+    author: "Rahul Sharma",
     category: "News",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic2.jpeg",
     excerpt:
-      "We're excited to announce our new partnership with Industry Leaders Inc. This collaboration will bring new opportunities and resources to our members.",
+      "We're thrilled to announce a new industry partnership bringing internship pipelines, sponsored labs, and guest lectures straight to the Mechanical Engineering department.",
   },
   {
     id: "3",
-    title: "Member Spotlight: Jessica Rodriguez",
+    title: "Member Spotlight: Ananya Gupta, SAE BAJA Lead",
     date: "May 5, 2025",
-    author: "Emily Wilson",
+    author: "Priya Verma",
     category: "Updates",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic3.jpeg",
     excerpt:
-      "This month, we're spotlighting Jessica Rodriguez, who has made significant contributions to our community outreach initiatives.",
+      "This month we spotlight Ananya Gupta, whose leadership on the SAE BAJA drivetrain team drove the buggy to a top-10 national finish.",
   },
   {
     id: "4",
-    title: "Summer Workshop Series Announced",
+    title: "Summer CAD & CFD Workshop Series Announced",
     date: "April 28, 2025",
-    author: "David Kim",
+    author: "Arjun Mehta",
     category: "Events",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic4.jpeg",
     excerpt:
-      "We're pleased to announce our summer workshop series, featuring expert speakers and hands-on learning opportunities.",
+      "Hands-on sessions covering SolidWorks, ANSYS Fluent, and mesh best practices. Open to all years — bring your laptop and your curiosity.",
   },
   {
     id: "5",
-    title: "Club Receives Community Service Award",
+    title: "MESA Wins Best Student Chapter Award",
     date: "April 20, 2025",
-    author: "Sarah Johnson",
+    author: "Prof. S. Banerjee",
     category: "News",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic1.jpeg",
     excerpt:
-      "Our club has been recognized with the prestigious Community Service Award for our ongoing commitment to local initiatives.",
+      "Our association has been recognized as the Best Student Chapter in the eastern region for outstanding technical activity and community outreach.",
   },
   {
     id: "6",
-    title: "Website Redesign Launch",
+    title: "New MESA Website Goes Live",
     date: "April 15, 2025",
-    author: "Daniel Wilson",
+    author: "Dev Team",
     category: "Updates",
-    image: "/placeholder.svg?height=400&width=600", // Added image for consistency layout
+    image: "/carousel/pic2.jpeg",
     excerpt:
-      "We're excited to announce the launch of our redesigned website, featuring improved navigation and new resources for members.",
+      "The redesigned MESA portal is live — faster, cleaner, and built around a precision-engineering aesthetic. Explore events, teams, and resources in one place.",
   },
   {
     id: "7",
     title: "Membership Renewal Period Begins",
     date: "April 10, 2025",
-    author: "James Taylor",
+    author: "Sneha Kulkarni",
     category: "Updates",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic3.jpeg",
     excerpt:
-      "The annual membership renewal period has begun. Current members can renew their membership at a discounted rate until May 15th.",
+      "Annual renewals are open. Current members can renew at a discounted rate until May 15th and keep access to workshops, competitions, and the members' lounge.",
   },
   {
     id: "8",
-    title: "Call for Volunteers: Community Service Day",
+    title: "Call for Volunteers: Campus Outreach Day",
     date: "April 5, 2025",
-    author: "Olivia Brown",
+    author: "Vikram Rao",
     category: "Events",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic4.jpeg",
     excerpt:
-      "We're seeking volunteers for our upcoming Community Service Day on May 20th. Join us in making a difference in our community.",
+      "We're seeking volunteers for our school outreach program on May 20th. Help us demo engines, robots, and bridges to inspire the next generation of engineers.",
   },
   {
     id: "9",
-    title: "New Member Orientation Schedule",
+    title: "Freshers' Orientation Schedule Released",
     date: "April 1, 2025",
-    author: "Grace Liu",
+    author: "Ishita Das",
     category: "Updates",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/carousel/pic1.jpeg",
     excerpt:
-      "New member orientation sessions have been scheduled for the coming month. All new members are encouraged to attend.",
+      "Orientation sessions for new members are scheduled across the coming month — lab tours, team intros, and a crash course on everything MESA does.",
   },
 ]
-

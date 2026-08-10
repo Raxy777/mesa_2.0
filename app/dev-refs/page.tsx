@@ -1,6 +1,7 @@
 import { TeamSection } from "@/components/team/TeamSection"
 import HeroBackground from "@/components/ui/hero-background"
-import { Terminal } from "lucide-react"
+import { FadeIn } from "@/components/animation/fade-in"
+import { Cog } from "lucide-react"
 
 const developer = [
   {
@@ -19,34 +20,45 @@ export default function DevRefsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[40vh] flex items-center justify-center overflow-hidden py-12 lg:py-24">
+      <section className="relative w-full min-h-[52vh] flex items-center justify-center overflow-hidden py-20">
         <HeroBackground />
-        {/* Ambient Gradient Blobs */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-primary/20 to-orange-500/20 rounded-full blur-[100px] z-0 pointer-events-none animate-pulse" />
-
-        <div className="container px-4 md:px-6 relative z-10 text-center">
-             <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium backdrop-blur-sm mb-6 badge-glow">
-              <Terminal className="mr-2 h-4 w-4" />
-              Developer Zone
-            </div>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6">
-              Dev <span className="text-gradient">References</span>
-            </h1>
-            <p className="max-w-[800px] text-muted-foreground text-lg md:text-xl mx-auto leading-relaxed">
-              Resources, documentation, and tools for our development team and contributors.
-            </p>
+        <div className="container px-4 md:px-6 relative z-10 text-center space-y-6">
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
+            UNDER THE HOOD
+          </span>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            Dev <span className="text-gradient">references</span>
+          </h1>
+          <p className="max-w-[680px] mx-auto text-muted-foreground text-lg md:text-xl leading-relaxed">
+            Resources, documentation, and the people who machine this platform.
+          </p>
         </div>
       </section>
 
       {/* Developer Profile Section */}
-      <div className="container px-4 md:px-6">
-        <TeamSection 
-          title="Lead Developer" 
-          subtitle="The architect behind this platform." 
-          members={developer} 
-          variant="developer" 
-        />
-      </div>
+      <section className="container px-4 md:px-6 pb-20">
+        <FadeIn delay={1}>
+          <span className="block text-center font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-primary mb-4">
+            SYSTEM ARCHITECTS // BUILD TEAM
+          </span>
+          <TeamSection
+            title="Lead Developer"
+            subtitle="The architect behind this platform."
+            members={developer}
+            variant="developer"
+          />
+        </FadeIn>
+      </section>
+
+      {/* Closing blueprint strip */}
+      <FadeIn delay={2}>
+        <div className="container px-4 md:px-6 pb-16 flex items-center justify-center gap-3 text-muted-foreground">
+          <Cog className="h-4 w-4 animate-spin-slow text-primary" />
+          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em]">
+            COMPILED ON CAMPUS — NEXT.JS 15 / TAILWIND / FRAMER MOTION
+          </span>
+        </div>
+      </FadeIn>
     </div>
   )
 }

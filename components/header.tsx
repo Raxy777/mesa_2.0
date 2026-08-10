@@ -3,9 +3,12 @@
 import Logo from "@/components/logo"
 import { ModeToggle } from "@/components/mode-toggle"
 import Sidebar from "@/components/sidebar"
+import { cn } from "@/lib/utils"
+import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -17,11 +20,15 @@ const navigation = [
 ]
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const { scrollY } = useScroll()
 
-  // Prevent hydration mismatch by only rendering theme-dependent elements after mount
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 20)
+  })
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -32,29 +39,65 @@ export default function Header() {
       <Sidebar navigation={navigation} />
 
       {/* Main header */}
-      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
-          <div className="flex lg:flex-1">{mounted && <Logo size="medium" />}</div>
+      <motion.header
+        className={cn(
+          "sticky top-0 z-40 w-full transition-all duration-300 border-b",
+          scrolled
+            ? "bg-background/80 backdrop-blur-xl shadow-lg shadow-black/5 py-3"
+            : "bg-transparent py-5 border-transparent"
+        )}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-8">
+          <div className="flex items-center gap-8">
+            {mounted && <Logo size="medium" />}
+            
+            {/* Top divider for aesthetic */}
+            <div className="hidden lg:block h-6 w-[1px] bg-border/50" />
 
-          <div className="hidden lg:flex lg:gap-x-8 lg:items-center">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-semibold leading-6 transition-colors ${
-                  pathname === item.href ? "text-primary font-bold" : "text-foreground hover:text-primary"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            <nav className="hidden lg:flex lg:gap-x-1 lg:items-center">
+              {navigation.map((item) => {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "relative px-4 py-2 text-sm font-medium transition-colors hover:text-primary rounded-full group",
+                      isActive ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="navbar-indicator"
+                        className="absolute inset-0 bg-primary/10 dark:bg-primary/20 rounded-full -z-10"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    {item.name}
+                  </Link>
+                )
+              })}
+            </nav>
           </div>
 
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
             <ModeToggle />
+            <Link 
+              href="/contact" 
+              className="group flex items-center gap-1 bg-foreground text-background dark:bg-primary dark:text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary hover:text-primary-foreground dark:hover:bg-foreground dark:hover:text-background transition-all duration-300 shadow-md hover:shadow-primary/25"
+            >
+              Join MESA
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
-      </header>
+
+        {/* Global progress bar or accent line at top */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary/0 via-primary/60 to-primary/0 opacity-50" />
+      </motion.header>
     </>
   )
 }

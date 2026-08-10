@@ -4,96 +4,172 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222.2 84% 4.9%;
-    
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
- 
-    /* Orange-600 for Light Mode Primary */
-    --primary: 24.6 95% 53.1%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 24.6 95% 53.1%;
+    /* -- MESA Warm Machined (Light Mode) -- */
+    --background: 40 20% 96%;
+    --foreground: 24 10% 10%;
+
+    --card: 40 25% 98%;
+    --card-foreground: 24 10% 10%;
+
+    --popover: 40 25% 98%;
+    --popover-foreground: 24 10% 10%;
+
+    /* Precision Amber */
+    --primary: 32 95% 44%;
+    --primary-foreground: 40 40% 98%;
+
+    --secondary: 30 8% 92%;
+    --secondary-foreground: 24 10% 15%;
+
+    --muted: 30 8% 92%;
+    --muted-foreground: 30 6% 45%;
+
+    --accent: 30 10% 90%;
+    --accent-foreground: 24 10% 15%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 40% 98%;
+
+    --border: 30 10% 88%;
+    --input: 30 10% 88%;
+    --ring: 32 95% 44%;
     --radius: 0.75rem;
+
+    /* Chart palette */
+    --chart-1: 32 95% 44%;
+    --chart-2: 200 20% 40%;
+    --chart-3: 20 80% 50%;
   }
- 
+
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
- 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
- 
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
- 
-    /* Orange-500 for Dark Mode Primary */
-    --primary: 24.6 95% 53.1%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
-    --ring: 24.6 95% 53.1%;
+    /* -- MESA Carbon Blueprint (Dark Mode) -- */
+    --background: 228 15% 8%;
+    --foreground: 40 15% 92%;
+
+    --card: 228 15% 12%;
+    --card-foreground: 40 15% 92%;
+
+    --popover: 228 15% 10%;
+    --popover-foreground: 40 15% 92%;
+
+    /* Molten Amber */
+    --primary: 36 95% 55%;
+    --primary-foreground: 228 20% 8%;
+
+    --secondary: 228 10% 18%;
+    --secondary-foreground: 40 15% 92%;
+
+    --muted: 228 10% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 228 10% 22%;
+    --accent-foreground: 40 15% 92%;
+
+    --destructive: 0 62% 47%;
+    --destructive-foreground: 40 15% 92%;
+
+    --border: 228 10% 22%;
+    --input: 228 10% 25%;
+    --ring: 36 95% 55%;
+
+    --chart-1: 36 95% 55%;
+    --chart-2: 200 30% 45%;
+    --chart-3: 20 80% 55%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 @layer utilities {
+  /* Glass / Machined Panels */
   .glass {
-    @apply bg-white/40 dark:bg-white/5 backdrop-blur-lg border border-black/5 dark:border-white/10;
+    @apply bg-white/50 dark:bg-white/[0.02] backdrop-blur-xl border border-white/40 dark:border-white/5 shadow-sm;
   }
-  
+
   .glass-card {
-    @apply bg-white/60 dark:bg-black/20 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl;
+    @apply bg-white/70 dark:bg-[#0f111a]/80 backdrop-blur-md border border-black/5 dark:border-white/5 shadow-2xl shadow-black/5;
   }
-  
+
+  .machined-edge {
+    @apply relative;
+  }
+  .machined-edge::before {
+    content: "";
+    @apply absolute inset-0 rounded-inherit pointer-events-none border border-white/20 dark:border-white/5 opacity-50;
+    mask-image: linear-gradient(to bottom, black, transparent);
+  }
+
+  /* Blueprint Grid Texture */
+  .blueprint-grid {
+    background-image: linear-gradient(to right, hsl(var(--foreground) / 0.04) 1px, transparent 1px),
+                      linear-gradient(to bottom, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .blueprint-grid-major {
+    background-image: linear-gradient(to right, hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+                      linear-gradient(to bottom, hsl(var(--foreground) / 0.08) 1px, transparent 1px);
+    background-size: 200px 200px;
+  }
+
+  /* Molten Text Gradient */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 dark:from-orange-400 dark:via-amber-400 dark:to-yellow-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-500 to-yellow-500;
   }
-  
+
+  .dark .text-gradient {
+    @apply from-amber-400 via-orange-400 to-yellow-300;
+  }
+
   .text-gradient-primary {
-     @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-500 dark:to-red-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-500;
+  }
+
+  /* Ambient Glows */
+  .glow-amber {
+    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.5);
   }
 
   .badge-glow {
-    @apply shadow-[0_0_20px_-5px_hsl(var(--primary))] border-primary/50 bg-primary/10 text-primary animate-pulse;
+    @apply shadow-[0_0_20px_-5px_hsl(var(--primary))] border-primary/40 bg-gradient-to-r from-primary/10 to-transparent text-primary backdrop-blur-md;
   }
+
+  /* Animations available via tailwind.config extension */
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Custom selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 10px;
+  border: 2px solid hsl(var(--background));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
 }
