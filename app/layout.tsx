@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import SiteBackdrop from "@/components/ui/site-backdrop"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LoadingProvider } from "@/components/providers/loading-provider"
 
@@ -38,12 +39,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground bg-blueprint-grid">
+      <body className="font-sans antialiased text-foreground">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <LoadingProvider>
+            {/* Global liquid-ether backdrop, visible through the whole site */}
+            <SiteBackdrop />
             <div className="flex min-h-screen flex-col relative">
-              {/* Subtle noise overlay for texture */}
-              <div className="fixed inset-0 -z-50 bg-blueprint-grid opacity-40 pointer-events-none" />
               <Header />
               <main className="flex-1 relative">{children}</main>
               <Footer />
