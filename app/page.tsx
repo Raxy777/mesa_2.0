@@ -1,5 +1,6 @@
 import Carousel from "@/components/carousel"
 import { FadeIn } from "@/components/animation/fade-in"
+import TextType from "@/components/animation/text-type"
 import Marquee, { MarqueeItem } from "@/components/ui/marquee"
 import { Button } from "@/components/ui/button"
 import HeroBackground from "@/components/ui/hero-background"
@@ -86,10 +87,25 @@ export default function HomePage() {
               </FadeIn>
 
               <FadeIn delay={1}>
-                <h1 className="font-display text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95]">
-                  Where steel
-                  <br />
-                  meets <span className="text-gradient">ideas.</span>
+                <h1 className="font-display text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] min-h-[2em] flex items-center">
+                  <TextType
+                    as="span"
+                    text={[
+                      "Where steel meets ideas.",
+                      "Welcome to MESA.",
+                      "Ideate. Innovate. Elevate.",
+                      "Precision meets passion.",
+                      "We build what others imagine.",
+                      "Gears, grit & glory.",
+                    ]}
+                    variableSpeed={{ min: 30, max: 80 }}
+                    pauseDuration={6000}
+                    showCursor
+                    cursorCharacter="|"
+                    cursorClassName="text-primary"
+                    className="text-gradient"
+                    startOnVisible
+                  />
                 </h1>
               </FadeIn>
 
