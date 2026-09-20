@@ -1,4 +1,11 @@
+import type { Metadata } from "next"
 import { TeamSection } from "@/components/team/TeamSection"
+
+export const metadata: Metadata = {
+  title: "Dev References",
+  description: "Internal developer references for the MESA website.",
+  robots: { index: false, follow: false },
+}
 import HeroBackground from "@/components/ui/hero-background"
 import { FadeIn } from "@/components/animation/fade-in"
 import { Cog } from "lucide-react"

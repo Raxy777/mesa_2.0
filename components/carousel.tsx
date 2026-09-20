@@ -67,6 +67,7 @@ export default function Carousel({ images, autoPlayInterval = 5000, className = 
               fill
               className="object-cover"
               priority={index === 0}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
             />
           </div>
         ))}

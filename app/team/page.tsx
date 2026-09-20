@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { FadeIn } from "@/components/animation/fade-in"
 import { ProfileCard } from "@/components/team/ProfileCard"
 import { Button } from "@/components/ui/button"
@@ -6,6 +7,20 @@ import SectionHeading from "@/components/ui/section-heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Cog, Instagram } from "lucide-react"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Meet the Team",
+  description:
+    "Meet the core leadership, committee leads and faculty advisors keeping MESA's gears turning at NIT Durgapur — presidents, secretaries, R&D, technical, logistics and PR heads.",
+  alternates: { canonical: "/team" },
+  openGraph: {
+    title: "Meet the Team | MESA, NIT Durgapur",
+    description:
+      "The dedicated students and faculty advisors behind MESA — core leadership, committee leads and mentors.",
+    url: "/team",
+    type: "website",
+  },
+}
 
 export default function TeamPage() {
   return (
@@ -130,7 +145,7 @@ const leadershipTeam = [
     name: "Ramanath Rakshit ",
     role: "Vice President",
     initials: "RR",
-    image: "/Team/2027/rakshit.webp?height=400&width=400",
+    image: "/Team/2027/rakshit.webp",
     social: {
       linkedin: "https://www.linkedin.com/in/ramanath-rakshit",
     },
@@ -139,7 +154,7 @@ const leadershipTeam = [
     name: "Pranoy Sarkar",
     role: "General Secretary",
     initials: "PS",
-    image: "/Team/2027/ps.png?height=400&width=400",
+    image: "/Team/2027/ps.png",
     social: {
       linkedin: "https://www.linkedin.com/in/pranoy-sarkar-350694375",
     },
@@ -148,7 +163,7 @@ const leadershipTeam = [
     name: "Samparka Sadhukhan",
     role: "Treasurer",
     initials: "SS",
-    image: "/Team/2027/ss.jpg?height=400&width=400",
+    image: "/Team/2027/ss.jpg",
     social: {
       linkedin: "https://www.linkedin.com/in/samparka-sadhukhan-75308927a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     },
@@ -158,7 +173,7 @@ const leadershipTeam = [
     name: "Suhitha Chand ",
     role: "Convenor",
     initials: "SS",
-    image: "/Team/2027/sc.jpeg?height=400&width=400",
+    image: "/Team/2027/sc.jpeg",
     social: {
       linkedin: "https://www.linkedin.com/in/suhitha-chand-kancharla-5410a5357",
       instagram: "https://www.instagram.com/suhitha_kancharla?stkn=eDZ1Mm1sZ295dWF5&utm_source=qr"
@@ -169,7 +184,7 @@ const leadershipTeam = [
     name: "Kritanu Chattopadhyay",
     role: "RnD Head ",
     initials: "KC",
-    image: "/Team/2027/kc.png?height=400&width=400",
+    image: "/Team/2027/kc.png",
     social: {
       linkedin: "www.linkedin.com/in/kritanuchattopadhyay",
     },
@@ -180,7 +195,7 @@ const leadershipTeam = [
     name: "Srijan Maddheshiya",
     role: "Technical and Media Head",
     initials: "SM",
-    image: "/Team/2027/srijan.jpg?height=400&width=400",
+    image: "/Team/2027/srijan.jpg",
     social: {
       
     },
@@ -190,7 +205,7 @@ const leadershipTeam = [
     name: "Keerthana ",
     role: "Logistics and PR Head",
     initials: "",
-    image: "/Team/2027/keerthana.png?height=400&width=400",
+    image: "/Team/2027/keerthana.png",
     social: {
       linkedin: "https://www.linkedin.com/in/keerthana-seelaboyina-773759303?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     },
@@ -202,7 +217,7 @@ const committeeLeads = [
     name: "Akshay Reddy",
     role: "Senior Coordinator",
     initials: "AR",
-    image: "/Team/2028/akshay.jpeg?height=400&width=400",
+    image: "/Team/2028/akshay.jpeg",
     social: {
       linkedin: "https://www.linkedin.com/in/akshayreddyguvvala/",
     },
@@ -212,7 +227,7 @@ const committeeLeads = [
     name: "Nikhitha",
     role: "Senior Coordinator",
     initials: "GN",
-    image: "/Team/2028/nik.jpeg?height=400&width=400",
+    image: "/Team/2028/nik.jpeg",
     social: {
     },
   },
@@ -221,7 +236,7 @@ const committeeLeads = [
     name: "Tirthankar Roy",
     role: "Senior Coordinator",
     initials: "TR",
-    image: "/Team/2028/tr.jpg?height=400&width=400",
+    image: "/Team/2028/tr.jpg",
     social: {
     },
   },
@@ -230,7 +245,7 @@ const committeeLeads = [
     name: "Sai Sreeja ",
     role: "Senior Coordinator",
     initials: "SS",
-    image: "/Team/2028/sreeja.jpg?height=400&width=400",
+    image: "/Team/2028/sreeja.jpg",
     social: {
     },
   },
@@ -239,7 +254,7 @@ const committeeLeads = [
     name: "Aporva",
     role: "Senior Coordinator",
     initials: "NA",
-    image: "/Team/2028/apn.jpg?height=400&width=400",
+    image: "/Team/2028/apn.jpg",
     social: {
     },
   },
@@ -248,7 +263,7 @@ const committeeLeads = [
     name: "Shibu Gorai",
     role: "Senior Coordinator",
     initials: "SG",
-    image: "/Team/2028/sg.png?height=400&width=400",
+    image: "/Team/2028/sg.png",
     social: {
       instagram: "https://www.instagram.com/shibu_da_?igsh=MW03ajBycWZ1ZmoxZQ==",
     },
@@ -304,7 +319,7 @@ const advisors = [
     name: "Dr. Jayabrata Dhar",
     role: "Faculty Advisor",
     initials: "JAD",
-    image: "/advisers/JAD sir.jpeg?height=400&width=400",
+    image: "/advisers/JAD sir.jpeg",
     bio: "Linda is a Senior Mechanical Engineer at an automotive firm. She mentors students on career development.",
     social: {
       

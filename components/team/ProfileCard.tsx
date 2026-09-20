@@ -22,7 +22,7 @@ interface ProfileCardProps {
 export function ProfileCard({
   name = "Sophie Bennett",
   designation = "Product Designer",
-  image = "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=800&h=800&fit=crop&auto=format&q=80",
+  image = "/placeholder-user.jpg",
   enableAnimations = true,
   className,
   socials = {
@@ -141,8 +141,10 @@ export function ProfileCard({
     >
       {/* Full Cover Image (sharp, no blur) */}
       <motion.img
-        src={image}
-        alt={name}
+        src={image || "/placeholder-user.jpg"}
+        alt={`${name} — ${designation}, MESA NIT Durgapur`}
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover"
         variants={imageVariants}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}

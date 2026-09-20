@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Carousel from "@/components/carousel"
 import { FadeIn } from "@/components/animation/fade-in"
 import TextType from "@/components/animation/text-type"
@@ -20,11 +21,31 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 
+export const metadata: Metadata = {
+  title: "MESA | Mechanical Engineering Students' Association, NIT Durgapur",
+  description:
+    "MESA is the engine of mechanical engineering culture at NIT Durgapur — CAD/FEA workshops, fabrication builds, robotics, industrial visits, research and career guidance since 1960.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "MESA | Mechanical Engineering Students' Association, NIT Durgapur",
+    description:
+      "Workshops, builds, robotics, industrial visits and career guidance — mechanical engineering culture at NIT Durgapur since 1960.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MESA | Mechanical Engineering Students' Association, NIT Durgapur",
+    description:
+      "Workshops, builds, robotics, industrial visits and career guidance — mechanical engineering culture at NIT Durgapur.",
+  },
+}
+
 const carouselImages = [
-  { src: "/carousel/pic1.jpeg", alt: "Club members at an annual conference" },
-  { src: "/carousel/pic2.jpeg", alt: "Workshop session with club members" },
-  { src: "/carousel/pic3.jpeg", alt: "Community service project" },
-  { src: "/carousel/pic4.jpeg", alt: "Club social gathering" },
+  { src: "/carousel/pic1.jpeg", alt: "MESA NIT Durgapur members at annual technical symposium" },
+  { src: "/carousel/pic2.jpeg", alt: "Mechanical engineering CAD and fabrication workshop by MESA NIT Durgapur" },
+  { src: "/carousel/pic3.jpeg", alt: "MESA NIT Durgapur industrial visit and community engineering project" },
+  { src: "/carousel/pic4.jpeg", alt: "MESA NIT Durgapur student team at robotics and social gathering" },
 ]
 
 const pillars = [
@@ -270,9 +291,10 @@ export default function HomePage() {
                 <div className="aspect-[4/5] sm:aspect-square relative rounded-2xl overflow-hidden border border-border shadow-2xl">
                   <Image
                     src="/carousel/pic2.jpeg"
-                    alt="About MESA"
+                    alt="MESA NIT Durgapur mechanical engineering workshop — students building and testing projects"
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5">

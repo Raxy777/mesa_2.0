@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { FadeIn } from "@/components/animation/fade-in"
 import { Button } from "@/components/ui/button"
 import HeroBackground from "@/components/ui/hero-background"
@@ -7,9 +8,59 @@ import { ArrowRight, Calendar, Clock, MapPin, Users } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
+export const metadata: Metadata = {
+  title: "Events & Activities",
+  description:
+    "Explore MESA events at NIT Durgapur — technical symposiums, SolidWorks CAD bootcamps, ANSYS FEA workshops, industrial visits, robo-wars and design sprints.",
+  keywords: [
+    "MESA events",
+    "NIT Durgapur events",
+    "mechanical engineering workshops",
+    "CAD bootcamp",
+    "SolidWorks workshop",
+    "ANSYS workshop",
+    "robotics competition NIT",
+    "industrial visit Durgapur",
+  ],
+  alternates: { canonical: "/events" },
+  openGraph: {
+    title: "Events & Activities | MESA, NIT Durgapur",
+    description:
+      "Technical symposiums, CAD bootcamps, industrial visits and robotics competitions — every rig on the MESA calendar.",
+    url: "/events",
+    type: "website",
+  },
+}
+
 export default function EventsPage() {
+  const eventsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [...upcomingEvents, ...pastEvents].slice(0, 9).map((event, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Event",
+        name: event.title,
+        description: event.description,
+        location: {
+          "@type": "Place",
+          name: event.location,
+          address: "NIT Durgapur, West Bengal, India",
+        },
+        organizer: {
+          "@type": "Organization",
+          name: "MESA — Mechanical Engineering Students' Association, NIT Durgapur",
+        },
+      },
+    })),
+  };
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventsJsonLd) }}
+      />
       {/* ==================== HERO ==================== */}
       <section className="relative w-full min-h-[52vh] flex items-center justify-center overflow-hidden py-20">
         <HeroBackground />

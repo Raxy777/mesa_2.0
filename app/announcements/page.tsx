@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import HeroBackground from "@/components/ui/hero-background"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -5,6 +6,20 @@ import { FadeIn } from "@/components/animation/fade-in"
 import { ArrowRight, Calendar, Search, User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+
+export const metadata: Metadata = {
+  title: "Announcements & News",
+  description:
+    "Latest bulletins from MESA, NIT Durgapur — symposium registrations, industry MoUs, workshop series, awards, membership renewals and outreach calls.",
+  alternates: { canonical: "/announcements" },
+  openGraph: {
+    title: "Announcements & News | MESA, NIT Durgapur",
+    description:
+      "Bulletins from the shop floor — events, results, partnerships and everything in between.",
+    url: "/announcements",
+    type: "website",
+  },
+}
 
 export default function AnnouncementsPage() {
   return (
