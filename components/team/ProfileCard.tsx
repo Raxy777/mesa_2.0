@@ -12,10 +12,10 @@ interface ProfileCardProps {
   enableAnimations?: boolean
   className?: string
   socials?: {
-    github?: string;
-    linkedin?: string;
-    twitter?: string;
-    instagram?: string;
+    github?: string
+    linkedin?: string
+    twitter?: string
+    instagram?: string
   }
 }
 
@@ -29,30 +29,30 @@ export function ProfileCard({
     github: "#",
     linkedin: "#",
     twitter: "#",
-    instagram: "#"
-  }
+    instagram: "#",
+  },
 }: ProfileCardProps) {
   const [hovered, setHovered] = useState(false)
   const shouldReducedMotion = useReducedMotion()
   const shouldAnimate = enableAnimations && !shouldReducedMotion
 
   const containerVariants: any = {
-    rest: { 
+    rest: {
       scale: 1,
       y: 0,
-      filter: "blur(0px)",
     },
-    hover: shouldAnimate ? { 
-      scale: 1.02, 
-      y: -4,
-      filter: "blur(0px)",
-      transition: { 
-        type: "spring", 
-        stiffness: 400, 
-        damping: 28,
-        mass: 0.6,
-      }
-    } : {},
+    hover: shouldAnimate
+      ? {
+          scale: 1.02,
+          y: -4,
+          transition: {
+            type: "spring",
+            stiffness: 400,
+            damping: 28,
+            mass: 0.6,
+          },
+        }
+      : {},
   }
 
   const imageVariants: any = {
@@ -61,15 +61,13 @@ export function ProfileCard({
   }
 
   const contentVariants: any = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 20,
-      filter: "blur(4px)",
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -82,17 +80,15 @@ export function ProfileCard({
   }
 
   const itemVariants: any = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 15,
       scale: 0.95,
-      filter: "blur(2px)",
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -103,12 +99,12 @@ export function ProfileCard({
   }
 
   const letterVariants: any = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       scale: 0.8,
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: {
         type: "spring",
@@ -119,6 +115,13 @@ export function ProfileCard({
     },
   }
 
+  const socialLinks = [
+    { key: "github", Icon: Github, href: socials?.github },
+    { key: "linkedin", Icon: Linkedin, href: socials?.linkedin },
+    { key: "twitter", Icon: Twitter, href: socials?.twitter },
+    { key: "instagram", Icon: Instagram, href: socials?.instagram },
+  ]
+
   return (
     <motion.div
       data-slot="profile-hover-card"
@@ -126,16 +129,17 @@ export function ProfileCard({
       onMouseLeave={() => setHovered(false)}
       initial="rest"
       whileHover="hover"
-      variants={containerVariants as any}
+      variants={containerVariants}
       className={cn(
-        "relative w-80 h-96 rounded-3xl border border-border/20 text-card-foreground overflow-hidden shadow-xl shadow-black/5 cursor-pointer group backdrop-blur-sm",
+        "relative w-80 h-96 rounded-3xl border border-border/20 overflow-hidden shadow-xl shadow-black/5 cursor-pointer group",
         "dark:shadow-black/20",
         "transition-all duration-300",
-        hovered && "ring-2 ring-primary/50 shadow-[0_0_30px_-5px_hsl(var(--primary)_/_0.3)] border-primary/50",
+        hovered &&
+          "ring-2 ring-primary/50 shadow-[0_0_30px_-5px_hsl(var(--primary)_/_0.3)] border-primary/50",
         className
       )}
     >
-      {/* Full Cover Image */}
+      {/* Full Cover Image (sharp, no blur) */}
       <motion.img
         src={image}
         alt={name}
@@ -144,28 +148,29 @@ export function ProfileCard({
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       />
 
-      {/* Smooth Blur Overlay - Multiple layers for seamless fade */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 via-background/20 via-background/10 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background/90 via-background/60 via-background/30 via-background/15 via-background/8 to-transparent backdrop-blur-[1px]" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background/85 via-background/40 to-transparent backdrop-blur-sm" />
+      {/* Slight overall dim so bright photos don't glare */}
+      <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+
+      {/* Dark gradient at the bottom for text visibility */}
+      <div className="absolute bottom-0 left-0 right-0 h-3/5 bg-gradient-to-t from-black/90 via-black/60 to-transparent pointer-events-none" />
 
       {/* Content */}
-      <motion.div 
+      <motion.div
         variants={contentVariants}
         initial="hidden"
         animate="visible"
         className="absolute bottom-0 left-0 right-0 p-6 space-y-4"
       >
-        {/* Name and Verification */}
+        {/* Name */}
         <motion.div variants={itemVariants} className="flex items-center gap-2">
-          <motion.h2 
-            className="text-2xl font-bold text-foreground"
+          <motion.h2
+            className="text-2xl font-bold text-white drop-shadow-md"
             variants={{
               visible: {
                 transition: {
                   staggerChildren: 0.02,
-                }
-              }
+                },
+              },
             } as any}
           >
             {name.split("").map((letter, index) => (
@@ -181,7 +186,7 @@ export function ProfileCard({
         </motion.div>
 
         {/* Designation */}
-        <motion.p 
+        <motion.p
           variants={itemVariants}
           className="text-primary/80 font-medium text-sm"
         >
@@ -189,57 +194,25 @@ export function ProfileCard({
         </motion.p>
 
         {/* Social Links */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="flex items-center justify-start gap-3 pt-2 w-full"
         >
-          {socials?.github && (
-            <motion.a
-              href={socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center p-2.5 rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors border border-border/20 shadow-sm"
-            >
-              <Github className="w-5 h-5" />
-            </motion.a>
-          )}
-          {socials?.linkedin && (
-            <motion.a
-              href={socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center p-2.5 rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors border border-border/20 shadow-sm"
-            >
-              <Linkedin className="w-5 h-5" />
-            </motion.a>
-          )}
-          {socials?.twitter && (
-            <motion.a
-              href={socials.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center p-2.5 rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors border border-border/20 shadow-sm"
-            >
-              <Twitter className="w-5 h-5" />
-            </motion.a>
-          )}
-          {socials?.instagram && (
-            <motion.a
-              href={socials.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center p-2.5 rounded-full bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors border border-border/20 shadow-sm"
-            >
-              <Instagram className="w-5 h-5" />
-            </motion.a>
+          {socialLinks.map(
+            ({ key, Icon, href }) =>
+              href && (
+                <motion.a
+                  key={key}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors border border-white/20 shadow-sm"
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              )
           )}
         </motion.div>
       </motion.div>
