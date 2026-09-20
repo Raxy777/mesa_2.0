@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import HeroBackground from "@/components/ui/hero-background"
 import SectionHeading from "@/components/ui/section-heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Cog } from "lucide-react"
+import { Cog, Instagram } from "lucide-react"
 import Link from "next/link"
 
 export default function TeamPage() {
@@ -117,127 +117,197 @@ export default function TeamPage() {
 
 const leadershipTeam = [
   {
-    name: "Alex Morgan",
+    name: "Solomon Raj",
     role: "President",
-    initials: "AM",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Alex is a senior majoring in Mechanical Engineering with a passion for CAD design and community building.",
+    initials: "SR",
+    image: "/Team/2027/solomon.png",
     social: {
-      twitter: "#",
-      linkedin: "#",
-      github: "#",
-      email: "alex@example.com",
+      linkedin: "https://www.linkedin.com/in/solomon-raj-484a69311?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      instagram: "https://www.instagram.com/i_solomon_raj?stkn=bTk5YmlhZTY1cWhz"
     },
   },
   {
-    name: "Sarah Chen",
+    name: "Ramanath Rakshit ",
     role: "Vice President",
-    initials: "SC",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Sarah is a junior specializing in thermal systems. She oversees club operations and coordinates major events.",
+    initials: "RR",
+    image: "/Team/2027/rakshit.webp?height=400&width=400",
     social: {
-      linkedin: "#",
-      github: "#",
-      email: "sarah@example.com",
+      linkedin: "https://www.linkedin.com/in/ramanath-rakshit",
     },
   },
   {
-    name: "David Kim",
+    name: "Pranoy Sarkar",
+    role: "General Secretary",
+    initials: "PS",
+    image: "/Team/2027/ps.png?height=400&width=400",
+    social: {
+      linkedin: "https://www.linkedin.com/in/pranoy-sarkar-350694375",
+    },
+  },
+  {
+    name: "Samparka Sadhukhan",
     role: "Treasurer",
-    initials: "DK",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "David manages the club's finances and budget. He is studying Mechanical Engineering with an interest in project management.",
+    initials: "SS",
+    image: "/Team/2027/ss.jpg?height=400&width=400",
     social: {
-      linkedin: "#",
-      email: "david@example.com",
+      linkedin: "https://www.linkedin.com/in/samparka-sadhukhan-75308927a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     },
   },
+
   {
-    name: "Emily Rodriguez",
-    role: "Secretary",
-    initials: "ER",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Emily handles internal communications and record-keeping. She loves precision and well-organized engineering.",
+    name: "Suhitha Chand ",
+    role: "Convenor",
+    initials: "SS",
+    image: "/Team/2027/sc.jpeg?height=400&width=400",
     social: {
-      twitter: "#",
-      linkedin: "#",
-      email: "emily@example.com",
+      linkedin: "https://www.linkedin.com/in/suhitha-chand-kancharla-5410a5357",
+      instagram: "https://www.instagram.com/suhitha_kancharla?stkn=eDZ1Mm1sZ295dWF5&utm_source=qr"
+    },
+  },
+
+  {
+    name: "Kritanu Chattopadhyay",
+    role: "RnD Head ",
+    initials: "KC",
+    image: "/Team/2027/kc.png?height=400&width=400",
+    social: {
+      linkedin: "www.linkedin.com/in/kritanuchattopadhyay",
+    },
+  },
+
+
+{
+    name: "Srijan Maddheshiya",
+    role: "Technical and Media Head",
+    initials: "SM",
+    image: "/Team/2027/srijan.jpg?height=400&width=400",
+    social: {
+      
+    },
+  },
+
+  {
+    name: "Keerthana ",
+    role: "Logistics and PR Head",
+    initials: "",
+    image: "/Team/2027/keerthana.png?height=400&width=400",
+    social: {
+      linkedin: "https://www.linkedin.com/in/keerthana-seelaboyina-773759303?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     },
   },
 ]
 
 const committeeLeads = [
   {
-    name: "Michael Chang",
-    role: "Events Lead",
-    initials: "MC",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Michael loves planning engaging workshops and technical events that bring engineers together.",
+    name: "Akshay Reddy",
+    role: "Senior Coordinator",
+    initials: "AR",
+    image: "/Team/2028/akshay.jpeg?height=400&width=400",
     social: {
-      linkedin: "#",
-      email: "michael@example.com",
+      linkedin: "https://www.linkedin.com/in/akshayreddyguvvala/",
     },
   },
+
+   {
+    name: "Nikhitha",
+    role: "Senior Coordinator",
+    initials: "GN",
+    image: "/Team/2028/nik.jpeg?height=400&width=400",
+    social: {
+    },
+  },
+
   {
-    name: "Jessica Patel",
-    role: "Outreach Lead",
-    initials: "JP",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Jessica focuses on connecting the association with industry partners and other student organizations.",
+    name: "Tirthankar Roy",
+    role: "Senior Coordinator",
+    initials: "TR",
+    image: "/Team/2028/tr.jpg?height=400&width=400",
     social: {
-      twitter: "#",
-      linkedin: "#",
-      email: "jessica@example.com",
     },
   },
+
   {
-    name: "Ryan O'Connor",
-    role: "Tech Lead",
-    initials: "RO",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Ryan maintains the club's digital infrastructure and enjoys teaching others about engineering software.",
+    name: "Sai Sreeja ",
+    role: "Senior Coordinator",
+    initials: "SS",
+    image: "/Team/2028/sreeja.jpg?height=400&width=400",
     social: {
-      github: "#",
-      linkedin: "#",
-      email: "ryan@example.com",
     },
   },
+
   {
-    name: "Olivia Johnson",
-    role: "Design Lead",
-    initials: "OJ",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Olivia ensures all club assets look great. She specializes in industrial design and visual communication.",
+    name: "Aporva",
+    role: "Senior Coordinator",
+    initials: "NA",
+    image: "/Team/2028/apn.jpg?height=400&width=400",
     social: {
-      instagram: "#",
-      linkedin: "#",
-      email: "olivia@example.com",
     },
   },
+
+  {
+    name: "Shibu Gorai",
+    role: "Senior Coordinator",
+    initials: "SG",
+    image: "/Team/2028/sg.png?height=400&width=400",
+    social: {
+      instagram: "https://www.instagram.com/shibu_da_?igsh=MW03ajBycWZ1ZmoxZQ==",
+    },
+  },
+
+  {
+    name: "Prateek Pandey",
+    role: "Senior Coordinator",
+    initials: "PP",
+    image: "",
+    social: {
+    },
+  },
+
+  {
+    name: "Yash Tiwari",
+    role: "Senior Coordinator",
+    initials: "YT",
+    image: "",
+    social: {
+    },
+  },
+
+  {
+    name: "Aadil",
+    role: "Senior Coordinator",
+    initials: "AA",
+    image: "",
+    social: {
+    },
+  },
+
+  
+
+  
+
+  
+
 ]
 
 const advisors = [
   {
-    name: "Dr. Robert Smith",
+    name: "Dr. Deepak Kumar",
     role: "Faculty Advisor",
-    initials: "RS",
-    image: "/placeholder.svg?height=400&width=400",
-    bio: "Dr. Smith is a Professor of Mechanical Engineering who provides guidance and support to the association.",
+    initials: "DK",
+    image: "/advisers/DK sir.jpeg",
+    bio: "Assistant Professor, Department of Mechanical Engineering",
     social: {
-      linkedin: "#",
-      email: "robert@example.com",
+      
     },
   },
   {
-    name: "Linda Wong",
-    role: "Industry Mentor",
-    initials: "LW",
-    image: "/placeholder.svg?height=400&width=400",
+    name: "Dr. Jayabrata Dhar",
+    role: "Faculty Advisor",
+    initials: "JAD",
+    image: "/advisers/JAD sir.jpeg?height=400&width=400",
     bio: "Linda is a Senior Mechanical Engineer at an automotive firm. She mentors students on career development.",
     social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "linda@example.com",
+      
     },
   },
 ]
